@@ -58,26 +58,26 @@ function normalcdf(mean: number, sigma:number, to:number)
 <div class="out">
     <div>
         <div class="bar-outside">
-            <div class="p5" style={`width:${p5/100}%`}>{p5 > 500 ? Math.round(p5 / 10 ) / 10 : ""}</div>
-            <div class="p4" style={`width:${p4/100}%`}>{p4 > 500 ? Math.round(p4 / 10 ) / 10 : ""}</div>
-            <div class="p3" style={`width:${p3/100}%`}>{p3 > 500 ? Math.round(p3 / 10) / 10 : ""}</div>
-            <div title={`通常`} class="p2" style={`width:${p2/100}%`}>{Math.round(p2 / 10) / 10}</div>
-            <div class="lost" style={`width:${lost/100}%`}>{ lost > 500 ? Math.round(lost/10)/10 : ""}</div>
+            <div class="p5" style={`width:${p5/100}%`} title={ `0～30% 2点: ${p5 > 500 ? Math.round(p5 / 10 ) / 10 : ""}%`}>{p5 > 500 ? Math.round(p5 / 10 ) / 10 : ""}</div>
+            <div class="p4" style={`width:${p4/100}%`} title={`31～50% 3点:v ${p4 > 500 ? Math.round(p4 / 10 ) / 10 : ""}%`}>{p4 > 500 ? Math.round(p4 / 10 ) / 10 : ""}</div>
+            <div class="p3" style={`width:${p3/100}%`} title={`51～70% 4点: ${p3 > 500 ? Math.round(p3 / 10) / 10 : ""}%`}>{p3 > 500 ? Math.round(p3 / 10) / 10 : ""}</div>
+            <div class="p2" style={`width:${p2/100}%`} title={`71～99% 5点: ${ Math.round(p2 / 10) / 10 }%`}>{Math.round(p2 / 10) / 10}</div>
+            <div class="lost" style={`width:${lost/100}%`} title={ `100%～ 3点: ${lost > 500 ? Math.round(lost/10)/10  : ""}%`}>{ lost > 500 ? Math.round(lost/10)/10 : ""}</div>
         </div>
         
     </div>
     <div>
         <div class="bar-outside">
-            <div class="g" style={`width:${x2/100}%`}>{Math.round(x2/10)/10}</div>
+            <div class="g" style={`width:${x2/100}%`} title={ `99%以下 倍振り 0点: ${Math.round(x2/10)/10}%`}>{Math.round(x2/10)/10}</div>
             {#if x2 < 9950}
-            <div class="lost" style={`width:${100-x2/100}%`}>{x2 < 9500 ? Math.round((10000 - x2)/10) / 10:""}</div>
+            <div class="lost" style={`width:${100-x2/100}%`} title={ `100%～ 3点: ${x2 < 9500 ? Math.round((10000 - x2)/10) / 10 : ""}}%`}>{x2 < 9500 ? Math.round((10000 - x2)/10) / 10:""}</div>
             {/if}
         </div>
     </div>
     <div>
         <div class="bar-outside">
-            <div class="g"  style={`width:${x3/100}%`}>{Math.round(x3/10)/10}</div>
-            <div class="lost" style={`width:${100-x3/100}%`}>{ x3 < 9500 ? Math.round((10000 - x3)/10) / 10 : ""}</div>
+            <div class="g"  style={`width:${x3/100}%`} title={ "99%以下 追加振り 0点:" + Math.round(x3/10)/10}>{Math.round(x3/10)/10}</div>
+            <div class="lost" style={`width:${100-x3/100}%`} title={`100%～ 3点: ${x3 < 9500 ? Math.round((10000 - x3)/10) / 10 : ""}%`}>{ x3 < 9500 ? Math.round((10000 - x3)/10) / 10 : ""}</div>
         </div>
     </div>
 </div>
@@ -103,10 +103,11 @@ function normalcdf(mean: number, sigma:number, to:number)
         color: #B24443
     }
     .out{
-        width: calc(100vw / 7 - 10px) ;
+        width: var(--seven);
         display: flex;
         flex-direction: column;
         gap: 1px;
+        overflow: hidden;
     }
     .out div {
         height: 15px;
