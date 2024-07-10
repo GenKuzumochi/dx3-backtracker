@@ -12,9 +12,9 @@
 
   $: {
     const p = new URLSearchParams(location.hash.substring(1));
-    p.set("dice", dice.toString());
-    p.set("fix", fix.toString());
-    p.set("start", start.toString());
+    p.set("dice", (dice ?? 0).toString());
+    p.set("fix", (fix?? 0).toString());
+    p.set("start", (start??0).toString());
     location.hash = p.toString();
   }
 </script>
